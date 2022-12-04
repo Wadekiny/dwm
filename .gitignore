@@ -1,3 +1,4 @@
 .*.un~
 
-./statusbar/temp
+statusbar/
+statusbar/temp
