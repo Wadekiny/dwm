@@ -1,8 +1,8 @@
 #! /bin/bash
 # DATE 获取日期和时间的脚本
 
-source ~/.profile
 
+DWM="/home/wadekiny/ProgramFiles/dwm-wadekiny"
 this=_date
 s2d_reset="^d^"
 color="^c#2D1B46^^b#335566^"
@@ -31,7 +31,7 @@ update() {
 }
 
 click() {
-     notify-send "  Calendar" "\n$(cal --color=always | sed 1d | sed 's/..7m/<b><span color="#A1E1FF">/;s/..27m/<\/span><\/b>/' | sed 's/ /  /g' )"
+    notify-send "$(date '+%Y/%m/%d %H:%M')" "\n$(cal | sed 1d)"
 }
 
 case "$1" in

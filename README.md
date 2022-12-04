@@ -1,25 +1,34 @@
-# DWM YES
+# DWM 
 
-dwm 是一个非常快速, 小巧并使用动态管理窗口的窗口管理器
+## 改动
+- config.h: 在yaocccc的基础之上，改了一些配置
+- dwm.c: statusbar增加了task数量，task平分statusbar的剩余空间, 全局窗口在task中标识出来
+- statusbar: 增加了硬盘容量
 
-[展示视频: BV1Ef4y1Z7kA](https://www.bilibili.com/video/BV1Ef4y1Z7kA/)
+![show](./README/show.png)
 
-## 功能
 
-- 支持布局 tile(磁块)、magicgrid(进阶的网格布局)
-- 键盘移动/调整窗口大小 且移动/调整时有窗口间吸附效果
-- 窗口隐藏
-- 窗口可自定义是否全局(在所有tag内展示)
-- 更好的浮动窗口支持
-- 优化后的status2d 状态栏，可用鼠标点击操作
-- 系统托盘支持
-- overview
+> [展示视频: BV1Ef4y1Z7kA](https://www.bilibili.com/video/BV1Ef4y1Z7kA/)
+
+## config.h
+
+把文件路径改一下，启动一些功能脚本和statusbar
+```
+static const char *autostartscript = "/home/wadekiny/ProgramFiles/dwm_yaocccc/autostart.sh";
+static const char *statusbarscript = "/home/wadekiny/ProgramFiles/dwm-wadekiny/statusbar/statusbar.sh";
+```
 
 ## 安装
-
- sudo make clean install
+```
+sudo make clean install
+``` 
 
 ## 运行 dwm
+
+安装完后，在登录界面选择dwm，登录
+```
+pkill Xorg
+```
 
 将你的dwm源代码目录写入 ~/.profile, 例如  
 
@@ -33,11 +42,6 @@ export DWM=~/workspace/dwm
 exec dwm
 ```
 
-### Nix Flake
-
-```sh
-nix run github:yaocccc/dwm
-```
 
 ## 状态栏
 
@@ -59,18 +63,13 @@ nix run github:yaocccc/dwm
   
   请在dwm启动时 调用 $DWM/statusbar/statusbar.sh cron
 
-  注意 ~/.profile中需要有 该环境变量为强依赖关系
+  注意 ~/.profile中需要有 该环境变量为强依赖关系(我在每个文件中都加了依据DWM=xxx)
   export DWM=~/workspace/dwm
 
   点击事件发生时 会调用 $DWM/statusbar/statusbar.sh 并传入信号值 请自行处理
   例如 $DWM/statusbar/statusbar.sh date L  # 其中date为信号值 L为按键 (L左键 M中键 R右键)
 ```
 
-## 随DWM启动的自启动命令
-
-dwm启动时会去调用 ~/scripts/autostart.sh 脚本(如果存在的话)
-
-可参考 [autostart脚本](https://github.com/yaocccc/scripts/blob/master/autostart.sh)
 
 ## Q & A
 
@@ -97,11 +96,3 @@ dwm启动时会去调用 ~/scripts/autostart.sh 脚本(如果存在的话)
 
 请自行安装字体 仅以archlinux举例
 
-```shell
-yay -S nerd-fonts-jetbrains-mono
-yay -S ttf-material-design-icons
-yay -S ttf-joypixels
-yay -S wqy-microhei
-```
-
-## ENJOY IT 😃

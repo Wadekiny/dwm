@@ -1,8 +1,8 @@
 #! /bin/bash
 # 获取币价的脚本 不用的话可以去掉
 
-source ~/.profile
 
+DWM="/home/wadekiny/ProgramFiles/dwm-wadekiny"
 this=_coin
 s2d_reset="^d^"
 color="^c#223344^^b#4E5173^"

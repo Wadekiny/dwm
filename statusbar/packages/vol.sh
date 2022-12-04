@@ -14,11 +14,11 @@
 # 静音 -> Mute: no                                                                                 
 # 音量 -> Volume: front-left: 13183 /  20% / -41.79 dB,   front-right: 13183 /  20% / -41.79 dB
 
-source ~/.profile
 
+DWM="/home/wadekiny/ProgramFiles/dwm-wadekiny"
 this=_vol
 s2d_reset="^d^"
-color="^c#553388^^b#334466^"
+color="^c#331144^^b#334466^"
 signal=$(echo "^s$this^" | sed 's/_//')
 
 update() {
@@ -40,11 +40,9 @@ update() {
 
 click() {
     case "$1" in
-        L) pavucontrol & ;;                             # 打开pavucontrol
+        L) pactl set-sink-volume @DEFAULT_SINK@ +5%  ;; # 音量加
         M) pactl set-sink-mute @DEFAULT_SINK@ toggle ;; # 切换静音
-        R) pactl set-sink-mute @DEFAULT_SINK@ toggle ;; # 切换静音
-        U) pactl set-sink-volume @DEFAULT_SINK@ +5%  ;; # 音量加
-        D) pactl set-sink-volume @DEFAULT_SINK@ -5%  ;; # 音量减
+        R) pactl set-sink-volume @DEFAULT_SINK@ -5%  ;; # 音量减
     esac
 }
 

@@ -1,0 +1,6 @@
+export _bat='^c#2D1B46^^b#4E5173^^sbat^  100% ^d^'
+export _date='^c#2D1B46^^b#335566^^sdate^  12/04 11:29 ^d^'
+export _mem='^c#442266^^b#334466^^smem^  11% ^d^'
+export _vol='^c#331144^^b#334466^^svol^ 奔 54% ^d^'
+export _df='^c#221188^^b#334466^^sdf^  /:136G /home:38G ^d^'
+export _cpu='^c#2D1B46^^b#335566^^scpu^ 閭 04% 49°C ^d^'

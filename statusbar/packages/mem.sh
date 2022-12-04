@@ -1,8 +1,7 @@
 #! /bin/bash
 # MEM
 
-source ~/.profile
-
+DWM="/home/wadekiny/ProgramFiles/dwm-wadekiny"
 this=_mem
 s2d_reset="^d^"
 color="^c#442266^^b#334466^"
@@ -24,8 +23,8 @@ update() {
 click() {
     case "$1" in
         L) ;;
-        M) st -g 82x25 -c noborder -e btop ;;
-        R) st -g 82x25 -c noborder -e btop ;;
+        M) floatst btop 82 25 ;;
+        R) floatst btop 82 25 ;;
     esac
 }
 

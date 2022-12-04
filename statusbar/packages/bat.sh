@@ -1,8 +1,9 @@
 #! /bin/bash
 # 电池电量
 
-source ~/.profile
+#source ~/.profile
 
+DWM="/home/wadekiny/ProgramFiles/dwm-wadekiny"
 this=_bat
 s2d_reset="^d^"
 color="^c#2D1B46^^b#4E5173^"
