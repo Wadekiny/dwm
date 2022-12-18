@@ -32,6 +32,7 @@ refresh() {
 
 # 启动定时更新状态栏 不用的package有不同的刷新周期 注意不要重复启动该func
 cron() {
+    notify-send "cron is running"
     while true; do update cpu mem ;        sleep 1;  done &              # 每隔20s更新cpu 内存
     while true; do update df ;             sleep 1;  done &              # 每隔20s更新cpu 内存
     #while true; do update coin;           sleep 20;  done &              # 每隔20s更新币价

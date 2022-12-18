@@ -1,4 +1,3 @@
-//#define DEBUG
 
 /* See LICENSE file for copyright and license details.
  *
@@ -22,6 +21,8 @@
  *
  * To understand everything else, start reading main().
  */
+
+//#define DEBUG
 #include <errno.h>
 #include <locale.h>
 #include <signal.h>
@@ -44,7 +45,7 @@
 #include <X11/Xft/Xft.h>
 #include "drw.h"
 #include "util.h"
-
+#include "dwm.h" //macros enum struct 定义 
 /* macros */
 #define BUTTONMASK              (ButtonPressMask|ButtonReleaseMask)
 #define CLEANMASK(mask)         (mask & ~(numlockmask|LockMask) & (ShiftMask|ControlMask|Mod1Mask|Mod2Mask|Mod3Mask|Mod4Mask|Mod5Mask))

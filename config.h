@@ -1,4 +1,6 @@
 #include <X11/XF86keysym.h>
+#include <stdlib.h>
+
 
 static int showsystray                   = 1;         /* 是否显示托盘栏 */
 static const int newclientathead         = 0;         /* 定义新窗口在栈顶还是栈底 */
@@ -19,14 +21,14 @@ static const int   nmaster               = 1;         /* 主工作区 窗口数�
 static const unsigned int snap           = 10;        /* 边缘依附宽度 */
 static const unsigned int baralpha       = 0xc0;      /* 状态栏透明度 */
 static const unsigned int borderalpha    = 0xdd;      /* 边框透明度 */
-static const char *fonts[]               = { "JetBrainsMono Nerd Font:style=medium:size=10", "Kingnam Maiyuan:size=10","MaterialIcons-Regular:size=14" };
-
+static const char *fonts[]               = { "JetBrainsMono Nerd Font:style=medium:size=13", "Kingnam Maiyuan:size=13"};
+//,"MaterialIcons-Regular:size=14" 
 static const char *colors[][3]           = {          /* 颜色设置 ColFg, ColBg, ColBorder */ 
     [SchemeNorm] = { "#bbbbbb", "#111111", "#444444" },
     [SchemeSel] = { "#ffffff", "#15252D", "#42A5F5" },
     [SchemeSelGlobal] = { "#ffffff", "#15252D", "#FFC0CB" },
     [SchemeHid] = { "#dddddd", NULL, NULL },
-    [SchemeSystray] = { NULL, "#557788", NULL },
+    [SchemeSystray] = { NULL, "#102040", NULL },
     [SchemeUnderline] = { "#557788", NULL, NULL }, 
 };
 
@@ -43,7 +45,8 @@ static const char *statusbarscript = "/home/wadekiny/ProgramFiles/dwm-wadekiny/s
 /* 自定义tag名称 */
 /* 自定义特定实例的显示状态 */
 //            ﮸ 
-static const char *tags[] = { "", "", "", "", "", "", "", "", "", "", "", "ﬄ", "﬐", "" };
+//static const char *tags[] = { "", "", "", "", "", "", "", "", "", "", "", "ﬄ", "﬐", "" };
+static const char *tags[] = { "", "", "", "", "", "", "", "", "", "", "", "ﬄ", "﬐", "" };
 static const Rule rules[] = {
     /* class                 instance              title             tags mask     isfloating  isglobal    isnoborder monitor */
     {"music",                NULL,                 NULL,             1 << 10,      1,          0,          1,        -1 },
@@ -146,6 +149,7 @@ static Key keys[] = {
     { 0,    XF86XK_AudioLowerVolume,  spawn, SHCMD("amixer set  Master 1dB-") },                              /* super shift down | 音量减                 */
 	{ 0, XF86XK_MonBrightnessUp,	  spawn, SHCMD("xbacklight -inc 15")},
 	{ 0, XF86XK_MonBrightnessDown,	  spawn, SHCMD("xbacklight -dec 15")},
+	{ 0, XK_F9,	  spawn, SHCMD("python3 ~/.config/i3/auto_type.py root_password")},
     { ControlMask|Mod1Mask,    XK_a,  spawn, SHCMD("flameshot gui") },             /* super shift a    | 截图                   */
     { MODKEY|ShiftMask,    XK_q,      spawn, SHCMD("kill -9 $(xprop | grep _NET_WM_PID | awk '{print $3}')") }, /* super shift q    | 选中某个窗口并强制kill */
 
@@ -164,7 +168,9 @@ static Key keys[] = {
     TAGKEYS(XK_6, 5,  0,  0)
     TAGKEYS(XK_7, 6,  0,  0)
     TAGKEYS(XK_8, 7,  0,  0)
-    TAGKEYS(XK_9, 8,  0,  0)
+    //TAGKEYS(XK_9, 8,  0,  0)
+    TAGKEYS(XK_z, 8,  "zotero",  "zotero")
+    //TAGKEYS(XK_c, 9,  "google-chrome-stable", "google-chrome-stable")
     TAGKEYS(XK_c, 9,  "google-chrome-stable", "google-chrome-stable")
     //TAGKEYS(XK_m, 10, "~/scripts/music_player.sh", "pavucontrol")
     TAGKEYS(XK_m, 10, "netease-cloud-music", "netease-cloud-music")

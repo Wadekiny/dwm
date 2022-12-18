@@ -13,7 +13,8 @@ update() {
     root_text=$(df -hl / | grep / | awk '{printf "/:%s", $4}')  
     home_text=$(df -hl /home | grep home | awk '{printf "/home:%s", $4}')  
 
-    text=" $df_icon $root_text $home_text "
+    #text=" $df_icon $root_text $home_text "
+    text=" $df_icon $root_text "
     sed -i '/^export '$this'=.*$/d' $DWM/statusbar/temp
     printf "export %s='%s%s%s%s'\n" $this "$color" "$signal" "$text" "$s2d_reset" >> $DWM/statusbar/temp
 }
