@@ -1,6 +1,0 @@
-export _vol='^c#331144^^b#334466^^svol^ 奄 20% ^d^'
-export _bat='^c#2D1B46^^b#4E5173^^sbat^  % ^d^'
-export _date='^c#2D1B46^^b#335566^^sdate^  12/21 00:42 ^d^'
-export _df='^c#221188^^b#334466^^sdf^  /:815G ^d^'
-export _cpu='^c#2D1B46^^b#335566^^scpu^ 閭 00% ^d^'
-export _mem='^c#2D1B46^^b#335566^^smem^  51% ^d^'
