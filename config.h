@@ -6,7 +6,7 @@ static int showsystray                   = 1;         /* 是否显示托盘栏 *
 static const int newclientathead         = 0;         /* 定义新窗口在栈顶还是栈底 */
 static const unsigned int borderpx       = 2;         /* 窗口边框大小 */
 //static const unsigned int borderpx       = 0;         /* 窗口边框大小 */
-static const unsigned int systraypinning = 1;         /* 托盘跟随的显示器 0代表不指定显示器 */
+static const unsigned int systraypinning = 0;         /* 托盘跟随的显示器 0代表不指定显示器 */
 static const unsigned int systrayspacing = 1;         /* 托盘间距 */
 static int gappi                         = 12;        /* 窗口与窗口 缝隙大小 */
 static int gappo                         = 12;        /* 窗口与边缘 缝隙大小 */
@@ -46,20 +46,26 @@ static const char *statusbarscript = "/home/wadekiny/ProgramFiles/dwm-wadekiny/s
 /* 自定义特定实例的显示状态 */
 //            ﮸ 
 //static const char *tags[] = { "", "", "", "", "", "", "", "", "", "", "", "ﬄ", "﬐", "" };
-static const char *tags[] = { "", "", "", "", "", "", "", "", "", "", "", "ﬄ", "﬐", "" };
+//static const char *tags[] = { "", "", "", "", "", "", "", "", "", "", "", "ﬄ", "﬐", "" };
+static const char *tags[] = { "", "", "", "", "", "", "", "", "", "", "", "", "", "ﬄ", "﬐", "" };
+
+ 
 static const Rule rules[] = {
     /* class                 instance              title             tags mask     isfloating  isglobal    isnoborder monitor */
-    {"music",                NULL,                 NULL,             1 << 10,      1,          0,          1,        -1 },
-    { NULL,                 "icalingua",           NULL,             1 << 11,      0,          0,          1,        -1 },
-    { NULL,                 "wechat.exe",          NULL,             1 << 12,      0,          0,          0,        -1 },
-    { NULL,                 "wxwork.exe",          NULL,             1 << 13,      0,          0,          0,        -1 },
+    {NULL,                "zotero",                NULL,             1 << 10,      1,          0,          1,        -1 },
+    {"music",                NULL,                 NULL,             1 << 12,      1,          0,          1,        -1 },
+    { NULL,                 "icalingua",           NULL,             1 << 13,      0,          0,          1,        -1 },
+    { NULL,                 "linuxqq",                  NULL,             1 << 13,      0,          0,          1,        -1 },
+    { NULL,                 "wechat.exe",          NULL,             1 << 14,      0,          0,          0,        -1 },
+    { NULL,                 "wxwork.exe",          NULL,             1 << 15,      0,          0,          0,        -1 },
     { NULL,                  NULL,                "broken",          0,            1,          0,          0,        -1 },
     { NULL,                  NULL,                "图片查看",        0,            1,          0,          0,        -1 },
     { NULL,                  NULL,                "图片预览",        0,            1,          0,          0,        -1 },
     { NULL,                  NULL,                "crx_",            0,            1,          0,          0,        -1 },
     {"wemeetapp",            NULL,                 NULL,             0,            1,          0,          0,        -1 },
-    {"chrome",               NULL,                 NULL,             1 << 9,       0,          0,          0,        -1 },
-    {"Chromium",             NULL,                 NULL,             1 << 9,       0,          0,          0,        -1 },
+    {"chrome",               NULL,                 NULL,             1 << 11,       0,          0,          0,        -1 },
+    {"firefox",               NULL,                 NULL,             1 << 11,       0,          0,          0,        -1 },
+    {"Chromium",             NULL,                 NULL,             1 << 11,       0,          0,          0,        -1 },
     {"flameshot",            NULL,                 NULL,             0,            1,          0,          0,        -1 },
     {"float",                NULL,                 NULL,             0,            1,          0,          0,        -1 }, // 特殊class client默认浮动
     {"noborder",             NULL,                 NULL,             0,            1,          0,          1,        -1 }, // 特殊class client默认无边框
@@ -145,8 +151,11 @@ static Key keys[] = {
     { MODKEY,              XK_d,      spawn, SHCMD("rofi -theme slate.rasi -show combi -show-icons") },                                         /* super d          | rofi: 执行命令         */
     //{ MODKEY,              XK_F1,     spawn, SHCMD("pcmanfm") },                                                /* super F1         | 文件管理器             */
     { MODKEY,              XK_x,      spawn, SHCMD("betterlockscreen -l dim") },                                  /* super k          | 锁定屏幕               */
-    { 0,    XF86XK_AudioRaiseVolume,  spawn, SHCMD("amixer set  Master 1dB+") },                                /* super shift up   | 音量加                 */
-    { 0,    XF86XK_AudioLowerVolume,  spawn, SHCMD("amixer set  Master 1dB-") },                              /* super shift down | 音量减                 */
+    { 0,    XF86XK_AudioRaiseVolume,  spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%") },                 /* super shift up   | 音量加 */
+    { 0,    XF86XK_AudioLowerVolume,  spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%") },                 /* super shift down | 音量减     */
+    { 0,    XF86XK_AudioMute,  spawn, SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle") },                       /* super shift mute | Mute       */
+
+
 	{ 0, XF86XK_MonBrightnessUp,	  spawn, SHCMD("xbacklight -inc 15")},
 	{ 0, XF86XK_MonBrightnessDown,	  spawn, SHCMD("xbacklight -dec 15")},
 	{ 0, XK_F9,	  spawn, SHCMD("python3 ~/.config/i3/auto_type.py root_password")},
@@ -169,14 +178,17 @@ static Key keys[] = {
     TAGKEYS(XK_7, 6,  0,  0)
     TAGKEYS(XK_8, 7,  0,  0)
     //TAGKEYS(XK_9, 8,  0,  0)
-    TAGKEYS(XK_z, 8,  "zotero",  "zotero")
+    TAGKEYS(XK_9, 8,  0,  0)
+    TAGKEYS(XK_0, 9,  0,  0)
+    TAGKEYS(XK_z, 10,  "zotero",  "zotero")
+    TAGKEYS(XK_c, 11,  "firefox", "firefox")
+    TAGKEYS(XK_m, 12, "netease-cloud-music", "netease-cloud-music")
+    TAGKEYS(XK_i, 13, "linuxqq", "linuxqq")
+    TAGKEYS(XK_w, 14, "/opt/apps/com.qq.weixin.deepin/files/run.sh", "/opt/apps/com.qq.weixin.deepin/files/run.sh")
+    //TAGKEYS(XK_i, 13, "icalingua", "icalingua")
     //TAGKEYS(XK_c, 9,  "google-chrome-stable", "google-chrome-stable")
-    TAGKEYS(XK_c, 9,  "google-chrome-stable", "google-chrome-stable")
     //TAGKEYS(XK_m, 10, "~/scripts/music_player.sh", "pavucontrol")
-    TAGKEYS(XK_m, 10, "netease-cloud-music", "netease-cloud-music")
-    TAGKEYS(XK_0, 11, "icalingua", "icalingua")
-   // TAGKEYS(XK_w, 12, "/opt/apps/com.qq.weixin.deepin/files/run.sh", "/opt/apps/com.qq.weixin.deepin/files/run.sh")
-   // TAGKEYS(XK_l, 13, "/opt/apps/com.qq.weixin.work.deepin/files/run.sh", "/opt/apps/com.qq.weixin.work.deepin/files/run.sh")
+    // TAGKEYS(XK_l, 13, "/opt/apps/com.qq.weixin.work.deepin/files/run.sh", "/opt/apps/com.qq.weixin.work.deepin/files/run.sh")
 };
 static Button buttons[] = {
     /* click          event mask  button    function       argument  */
